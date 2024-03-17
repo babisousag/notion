@@ -12,7 +12,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 50vh;
+            height: 100%; /* Assegura que o html e body ocupem toda a altura da janela do navegador */;
+            margin: 0; /* Remove as margens padrão */
+            padding: 0; /* Remove os paddings padrão */
+            overflow: hidden; /* Esconde qualquer overflow */
+            box-sizing: border-box; /* Inclui padding e border no cálculo do tamanho do elemento */
+}
+
+*, *::before, *::after {
+    box-sizing: inherit; /* Herda box-sizing do elemento pai */
+}
+          
         }
         .widget {
             padding: 20px;
