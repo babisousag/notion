@@ -50,6 +50,8 @@
         .time, .colon, #ampm {
             font-size: 1.5em;
             display: inline-block;
+            margin: 0 5px; /* Ajusta o espaçamento entre os elementos dentro do relógio */
+}
         }
     </style>
 </head>
@@ -80,11 +82,11 @@ function displayGreetings(today){
     let name = ""; // Defina o nome aqui, se desejar
     let greet = '';
     if (hrs < 12)
-        greet = 'bom dia ' + name;
+        greet = 'bom dia! ' + name;
     else if (hrs >= 12 && hrs < 17)
-        greet = 'boa tarde ' + name;
+        greet = 'boa tarde! ' + name;
     else if (hrs >= 17 && hrs <= 24)
-        greet = 'boa noite ' + name;
+        greet = 'boa noite! ' + name;
     document.getElementById('greet').innerHTML = capitalizeFirstLetter(greet);
 }
 
