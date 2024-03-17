@@ -29,35 +29,34 @@
         }
 
         .widget {
-            padding: 5px;
+            padding: 10px;
             color: #000000;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            max-width: 70%; /* Reduzindo a largura máxima */
-            max-height: 70%; /* Reduzindo a altura máxima */
-            border: none;
+            max-width: 80%; /* Reduzindo a largura máxima */
+            max-height: 80%; /* Reduzindo a altura máxima */
+            border: 3px solid #000000; /* Mantendo a borda */
             border-radius: 5px;
-            box-shadow: none;
-}
-        
+            box-shadow: 2px 2px 1px 0px #000000; /* Mantendo a sombra */
+        }
+
         .greet {
-            font-size: 1.2em; /* Ajusta o tamanho das saudações */
+            font-size: 2em; /* Ajusta o tamanho das saudações */
             text-transform: uppercase; /* Transforma todas as letras em maiúsculas */
-}
+        }
+
         .date, .clock {
-            font-size: 0.8em;
+            font-size: 1em; /* Ajusta o tamanho dos elementos de data */
             text-align: center;
-            margin: 2px 0; /* Adiciona margem para centralizar verticalmente */
-}
-        
-.time, .colon, #ampm {
-            font-size: 1.2em;
+            margin: 5px 0; /* Adiciona margem para centralizar verticalmente */
+        }
+
+        .time, .colon, #ampm {
+            font-size: 1em; /* Ajusta o tamanho dos elementos do relógio */
             display: inline-block;
             margin: 0 2px; /* Ajusta o espaçamento entre os elementos dentro do relógio */
-}
-        
         }
     </style>
 </head>
@@ -146,4 +145,3 @@ displayWidget();
 
 </body>
 </html>
- 
