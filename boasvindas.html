@@ -22,13 +22,13 @@
             align-items: center;
             flex-direction: column;
             max-width: 95%;
-            border: none; /* Bordas removidas */
+            margin: auto; /* Centralizando */
+            border: none; /* Removendo a borda */
             border-radius: 5px;
-            box-shadow: none; /* Sombra removida */
+            box-shadow: none; /* Removendo a sombra */
         }
         .greet, .date, .clock {
             font-size: 1.5em;
-            text-transform: capitalize; /* Primeira letra maiúscula */
         }
         .time, .colon, #ampm {
             font-size: 1.5em;
@@ -54,8 +54,8 @@
 </div>
 
 <script>
-function capitalizeWords(str) {
-    return str.replace(/\b\w/g, char => char.toUpperCase());
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function displayGreetings(today){
@@ -68,7 +68,7 @@ function displayGreetings(today){
         greet = 'boa tarde ' + name;
     else if (hrs >= 17 && hrs <= 24)
         greet = 'boa noite ' + name;
-    document.getElementById('greet').innerHTML = capitalizeWords(greet);
+    document.getElementById('greet').innerHTML = capitalizeFirstLetter(greet);
 }
 
 function displayDate(today) {  
@@ -79,7 +79,7 @@ function displayDate(today) {
     var monthName = monthNames[today.getMonth()];
     var date = today.getDate();
     var year = today.getFullYear();
-    document.getElementById('date').innerHTML = capitalizeWords(dayName + ", " + monthName + " " + date + " " + year);
+    document.getElementById('date').innerHTML = capitalizeFirstLetter(dayName) + ", " + capitalizeFirstLetter(monthName) + " " + date + ", " + year;
 }
 
 function displayClock(today) {
