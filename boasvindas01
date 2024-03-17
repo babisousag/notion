@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saudações</title>
+    <!-- Importando a fonte Inter do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* Usando a fonte Inter */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .widget {
+            padding: 20px;
+            color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            max-width: 95%;
+            margin: auto; /* Centralizando */
+            border: none; /* Removendo a borda */
+            border-radius: 5px;
+            box-shadow: none; /* Removendo a sombra */
+        }
+        .greet, .date, .clock {
+            font-size: 1.5em;
+        }
+        .time, .colon, #ampm {
+            font-size: 1.5em;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="widget">
+        <div class="greet" id="greet"></div>
+        <div class="date" id="date"></div>
+        <div class="clock">
+            <div class="time" id="hour"></div>
+            <div class="colon">:</div>
+            <div class="time" id="min"></div>
+            <div class="colon">:</div>
+            <div class="time" id="sec"></div>
+            <span id="ampm"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function displayGreetings(today){
+    let hrs = today.getHours();
+    let name = ""; // Defina o nome aqui, se desejar
+    let greet = '';
+    if (hrs < 12)
+        greet = 'bom dia ' + name;
+    else if (hrs >= 12 && hrs < 17)
+        greet = 'boa tarde ' + name;
+    else if (hrs >= 17 && hrs <= 24)
+        greet = 'boa noite ' + name;
+    document.getElementById('greet').innerHTML = capitalizeFirstLetter(greet);
+}
+
+function displayDate(today) {  
+    const days = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
+    const monthNames = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+
+    var dayName = days[today.getDay()];
+    var monthName = monthNames[today.getMonth()];
+    var date = today.getDate();
+    var year = today.getFullYear();
+    document.getElementById('date').innerHTML = capitalizeFirstLetter(dayName) + ", " + capitalizeFirstLetter(monthName) + " " + date + ", " + year;
+}
+
+function displayClock(today) {
+    var hour = twelveHour(today.getHours());
+    var minutes = padZeros(today.getMinutes());
+    var seconds = padZeros(today.getSeconds());
+    var ampm = today.getHours() >= 12 ? 'pm' : 'am';
+   
+    document.getElementById('hour').innerHTML = padZeros(hour);
+    document.getElementById('min').innerHTML = minutes;
+    document.getElementById('sec').innerHTML = seconds;
+    document.getElementById('ampm').innerHTML = ampm;
+}
+
+function twelveHour(hour) {
+    if (hour > 12) {
+        return hour - 12;
+    } else if (hour === 0) {
+        return 12;
+    } else {
+        return hour;
+    }
+}
+
+function padZeros(num) {
+    return num < 10 ? '0' + num : num;
+}
+
+function displayWidget() {
+    var today = new Date();
+    displayGreetings(today);
+    displayDate(today);
+    displayClock(today);
+    setTimeout(displayWidget, 500);
+}
+
+displayWidget();
+</script>
+
+</body>
+</html>
