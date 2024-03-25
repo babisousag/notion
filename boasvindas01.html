@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Greetings</title>
+    <title>Saudações</title>
     <style>
         body{
             font-variant-caps: all-petite-caps;
@@ -28,18 +28,6 @@
             font-family: monospace;
             font-size: 2em;
         }
-        .clock {
-            font-family: monospace;
-            font-size: 2em;
-        }
-        .time {
-            display: inline-block;
-            min-width: 20px;
-        }
-        .colon {
-            font-size: 1em;
-            display: inline-block;
-        }
     </style>
 </head>
 <body>
@@ -48,77 +36,42 @@
     <div class="widget">
         <div class="greet" id="greet"></div>
         <div class="date" id="date"></div>
-        <div class="clock">
-            <div class="time" id="hour"></div>
-            <div class="colon">:</div>
-            <div class="time" id="min"></div>
-            <div class="colon">:</div>
-            <div class="time" id="sec"></div>
-            <span id="ampm"></span>
-        </div>
     </div>
 </div>
 
 <script>
-function displayGreetings(today){
-    let hrs = today.getHours();
-    let name = ""; // Defina o nome aqui
-    let greet = '';
+function exibirSaudacoes(hoje){
+    let hrs = hoje.getHours();
+    let nome = ""; // Defina o nome aqui
+    let saudacao = '';
     if (hrs < 12)
-        greet = 'Good Morning ' + name;
+        saudacao = 'Bom dia ' + nome;
     else if (hrs >= 12 && hrs < 17)
-        greet = 'Good Afternoon ' + name;
+        saudacao = 'Boa tarde ' + nome;
     else if (hrs >= 17 && hrs <= 24)
-        greet = 'Good Evening ' + name;
-    document.getElementById('greet').innerHTML = greet;
+        saudacao = 'Boa noite ' + nome;
+    document.getElementById('greet').innerHTML = saudacao;
 }
 
-function displayDate(today) {  
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+function exibirData(hoje) {  
+    const dias = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+    const nomesMeses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
-    var dayName = days[today.getDay()];
-    var monthName = monthNames[today.getMonth()];
-    var date = today.getDate();
-    var year = today.getFullYear();
-    document.getElementById('date').innerHTML = dayName + ", " + monthName + " " + date + " " + year;
+    var nomeDia = dias[hoje.getDay()];
+    var nomeMes = nomesMeses[hoje.getMonth()];
+    var dia = hoje.getDate();
+    var ano = hoje.getFullYear();
+    document.getElementById('date').innerHTML = nomeDia + ", " + nomeMes + " " + dia + " " + ano;
 }
 
-function displayClock(today) {
-    var hour = twelveHour(today.getHours());
-    var minutes = padZeros(today.getMinutes());
-    var seconds = padZeros(today.getSeconds());
-    var ampm = today.getHours() >= 12 ? 'pm' : 'am';
-   
-    document.getElementById('hour').innerHTML = padZeros(hour);
-    document.getElementById('min').innerHTML = minutes;
-    document.getElementById('sec').innerHTML = seconds;
-    document.getElementById('ampm').innerHTML = ampm;
+function exibirWidget() {
+    var hoje = new Date();
+    exibirSaudacoes(hoje);
+    exibirData(hoje);
+    setTimeout(exibirWidget, 500);
 }
 
-function twelveHour(hour) {
-    if (hour > 12) {
-        return hour -= 12;
-    } else if (hour === 0) {
-        return 12;
-    } else {
-        return hour;
-    }
-}
-
-function padZeros(num) {
-    return num < 10 ? '0' + num : num;
-}
-
-function displayWidget() {
-    var today = new Date();
-    displayGreetings(today);
-    displayDate(today);
-    displayClock(today);
-    setTimeout(displayWidget, 500);
-}
-
-displayWidget();
+exibirWidget();
 </script>
 
 </body>
